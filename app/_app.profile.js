@@ -44,6 +44,10 @@ profile = {
     location: "./arcgis-js-api/dgrid1"
   },
   {
+    name: "dstore",
+    location: "./arcgis-js-api/dstore"
+  },
+  {
     name: "esri",
     location: "./arcgis-js-api/esri"
   }, {
