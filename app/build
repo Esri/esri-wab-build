@@ -59,16 +59,12 @@ dojoConfig = {
 process.argv[2] = "load=build";
 process.argv[3] = "profile=app.profile.js";
 
-console.log("ABOUT TO HIT REQUIRE2");
-console.log(process.cwd().replace("\\","/") + "/arcgis-js-api/dojo/dojo.js");
-
 try{
 execSync("node " + 'arcgis-js-api\\dojo\\dojo.js' + " load=build profile=app.profile.js",{stdio:[0,1,2]});
 } catch(e){
   console.log("build always \"fails\"");
 }
 
-console.log("WHY ISN'T THIS HAPPENING");
 copyScript.copy({},{});
 
 /*global __dirname */
