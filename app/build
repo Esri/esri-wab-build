@@ -1,0 +1,78 @@
+#!/usr/bin/env node
+
+
+console.log('########## BUILD START TIME: ' + new Date() + ' ##########');
+
+const fs = require('fs-extra');
+const path = require('path');
+const rimraf = require('rimraf');
+const utilscripts = require('./utilscripts');
+const prepareScript = require('./prebuild');
+const copyScript = require('./copyapp');
+const process = require('process');
+const execSync = require('child_process').execSync;
+
+fs.copySync(path.join(__dirname,"bower.json"),"bower.json");
+fs.copySync(path.join(__dirname,".bowerrc"),".bowerrc");
+
+execSync("bower install",{stdio:[0,1,2]});
+
+let appRoot = process.cwd();
+let buildOutput = appRoot + path.sep + 'buildOutput';
+let appPackages = buildOutput + path.sep + 'app-packages';
+let appOutput = buildOutput + path.sep + 'app';
+
+rimraf.sync(buildOutput);
+fs.mkdirSync(buildOutput);
+
+
+prepareScript.setInfo({
+  appConfigFile: process.cwd() + path.sep + "config.json"
+});
+
+prepareScript.prepare();
+
+
+let loadModule = "build";
+
+dojoConfig = {
+  baseUrl: process.cwd(), // Where we will put our packages
+  async: 1, // We want to make sure we are using the "modern" loader
+  hasCache: {
+    "host-node": 1, // Ensure we "force" the loader into Node.js mode
+    "dom": 0 // Ensure that none of the code assumes we have a DOM
+  },
+  // While it is possible to use config-tlmSiblingOfDojo to tell the
+  // loader that your packages share the same root path as the loader,
+  // this really isn't always a good idea and it is better to be
+  // explicit about our package map.
+  packages: [{
+    name: "dojo",
+    location: "arcgis-js-api/dojo"
+  }, 
+{    name: "build",
+    location: "arcgis-js-api/util/build"
+  }],
+  deps: [loadModule] // And array of modules to load on "boot"
+};
+
+process.argv[2] = "load=build";
+process.argv[3] = "profile=app.profile.js";
+
+console.log("ABOUT TO HIT REQUIRE2");
+console.log(process.cwd().replace("\\","/") + "/arcgis-js-api/dojo/dojo.js");
+
+try{
+execSync("node " + 'arcgis-js-api\\dojo\\dojo.js' + " load=build profile=app.profile.js",{stdio:[0,1,2]});
+} catch(e){
+  console.log("build always \"fails\"");
+}
+
+console.log("WHY ISN'T THIS HAPPENING");
+copyScript.copy({},{});
+
+/*global __dirname */
+let basePath = process.cwd();
+utilscripts.cleanApp(path.join(basePath, 'buildOutput/app'));
+utilscripts.cleanFilesInAppSource(basePath);
+console.log('########## BUILD END TIME: ' + new Date() + ' ##########');
