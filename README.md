@@ -1,11 +1,12 @@
 # esri-wab-build
-Package used to build ESRI Web App Builder Apps for production.
+Package used to build ESRI Web App Builder (2.3) Apps for production.
 
 This task runs a full dojo build on any web app builder application, which will greatly improve performance.
 
 ##Requirements:
-bower
-nodejs
+*bower (validated with 1.8.0)
+*nodejs (validated with 6.9.4)
+*Java
 
 Bower can be installed via:
 npm install -g bower
