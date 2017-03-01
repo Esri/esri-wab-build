@@ -1,6 +1,7 @@
 {
   "name": "arcgis-js-api-webappbuilder",
   "version": "1.0.0",
+  "license": "Apache-2.0",
   "dependencies": {
     "esri": "arcgis-js-api#3.19"
   },

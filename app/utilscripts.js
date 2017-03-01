@@ -270,6 +270,10 @@ function addI18NLabel(manifest){
     if(p === 'root' || !defaultStrings[p]){
       continue;
     }
+    if (!fs.existsSync(path.join(manifest.location, 'nls', p, 'strings.js'))){
+      continue;
+    }
+    
     var localeStrings = requirejs(path.join(manifest.location, 'nls', p, 'strings.js'));
     if(localeStrings[key]){
       manifest.i18nLabels[p] = localeStrings[key];
@@ -390,7 +394,7 @@ function changeApiUrlOnEnv(from, to){
   if (portalUrl.substr(portalUrl.length - 1, portalUrl.length) !== '/') {
     portalUrl = portalUrl + '/';
   }
-  var apiUrl = '//js.arcgis.com/3.13';
+  var apiUrl = '//js.arcgis.com/3.19';
   var fileContent = fs.readFileSync(path.join(to, 'env.js'), {encoding: 'utf-8'});
 
   fileContent = fileContent.replace(

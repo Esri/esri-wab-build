@@ -6,7 +6,7 @@ const utilscripts = require('./utilscripts');
 const process = require('process');
 
 /*global __dirname */
-var basePath = process.cwd();
+var basePath = path.join(process.cwd(),"build-src");
 
 var appConfig, appConfigFile, rProfileFile, wProfileFile, profile;
 
@@ -64,7 +64,7 @@ function writeAppConfig(){
   var segs = appConfigFile.split(path.sep);
   segs.pop();
   var appConfigPath = segs.join(path.sep);
-  fse.writeJsonSync(path.join(appConfigPath, '_build-generate_config.json'), appConfig, 'utf-8');
+  fse.writeJsonSync(path.join(appConfigPath, 'build-src', '_build-generate_config.json'), appConfig, 'utf-8');
 }
 
 function writeProfile(){

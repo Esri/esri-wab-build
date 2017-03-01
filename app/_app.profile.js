@@ -2,7 +2,7 @@ profile = {
 
   // relative to this file
   basePath: ".",
-  releaseDir: "./buildOutput",
+  releaseDir: "../buildOutput",
   action: 'release',
   version: '1.0.0',
   releaseName: 'app-packages',
@@ -21,35 +21,39 @@ profile = {
 
   packages: [{
     name: "dojo",
-    location: "./arcgis-js-api/dojo"
+    location: "./dojo"
   }, {
     name: "dijit",
-    location: "./arcgis-js-api/dijit"
+    location: "./dijit"
   }, {
     name: "dojox",
-    location: "./arcgis-js-api/dojox"
+    location: "./dojox"
   }, 
   {
     name: "put-selector",
-    location: "./arcgis-js-api/put-selector"
+    location: "./put-selector"
   }, {
     name: "xstyle",
-    location: "./arcgis-js-api/xstyle"
+    location: "./xstyle"
   }, {
     name: "dgrid",
-    location: "./arcgis-js-api/dgrid"
+    location: "./dgrid"
   }, 
   {
     name: "dgrid1",
-    location: "./arcgis-js-api/dgrid1"
+    location: "./dgrid1"
   },
   {
     name: "dstore",
-    location: "./arcgis-js-api/dstore"
+    location: "./dstore"
+  },
+  {
+    name: "moment",
+    location: "./moment"
   },
   {
     name: "esri",
-    location: "./arcgis-js-api/esri"
+    location: "./esri"
   }, {
     name: "jimu",
     location: "./jimu.js"
