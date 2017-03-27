@@ -4,7 +4,7 @@
 		"email": "gbochenek@esri.com"
 	},
 	"name": "esri-wab-build",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Build ESRI Web App Builder Applications for performance.",
 	"license": "Apache",
 	"main": "app/build",
@@ -32,8 +32,9 @@
 		"url": "https://github.com/gbochenek/esri-wab-build"
 	},
 	"dependencies": {
-		"fs-extra": "0.11.0",
-    	"requirejs": "2.1.14"
+		"fs-extra": "^0.11.0",
+    	"requirejs": "^2.1.14",
+    	"rimraf": "^2.6.1"
 	}
 
 }
