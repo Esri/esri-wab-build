@@ -6,17 +6,14 @@ This task runs a full dojo build on any web app builder application, which will 
 Based largely around the scripts built by Junshan Liu (@qlqllu) at https://geonet.esri.com/docs/DOC-7934
 
 ##Requirements:
-* bower (validated with 1.8.0)
-* nodejs (validated with 6.9.4)
-* Java
-
-Bower can be installed via:
-npm install -g bower
-
+* Bower (validated with 1.8.0)
+* Nodejs (validated with 6.9.4)
+* Java 7 or greeater
+* Git
 
 ##To run:
-1. npm install -g esri-wab-build
+1. ```npm install -g esri-wab-build bower```
 2. navigate to the application to be built
-3. esri-wab-build
+3. ```esri-wab-build```
 
 The build output will be located in buildOut\app
