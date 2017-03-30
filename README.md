@@ -10,10 +10,6 @@ Based largely around the scripts built by Junshan Liu (@qlqllu) at https://geone
 * nodejs (validated with 6.9.4)
 * Java
 
-Bower can be installed via:
-npm install -g bower
-
-
 ##To run:
 1. npm install -g esri-wab-build bower
 2. navigate to the application to be built
