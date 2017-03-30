@@ -11,7 +11,7 @@ Based largely around the scripts built by Junshan Liu (@qlqllu) at https://geone
 * Java
 
 ##To run:
-1. npm install -g esri-wab-build bower
+1. ```npm install -g esri-wab-build bower```
 2. navigate to the application to be built
 3. esri-wab-build
 
