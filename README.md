@@ -15,7 +15,7 @@ npm install -g bower
 
 
 ##To run:
-1. npm install -g esri-wab-build
+1. npm install -g esri-wab-build bower
 2. navigate to the application to be built
 3. esri-wab-build
 
