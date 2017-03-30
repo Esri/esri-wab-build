@@ -13,6 +13,6 @@ Based largely around the scripts built by Junshan Liu (@qlqllu) at https://geone
 ##To run:
 1. ```npm install -g esri-wab-build bower```
 2. navigate to the application to be built
-3. esri-wab-build
+3. ```esri-wab-build```
 
 The build output will be located in buildOut\app
