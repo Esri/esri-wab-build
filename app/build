@@ -36,6 +36,7 @@ let appOutput = buildOutput + path.sep + 'app';
 
 rimraf.sync(buildOutput);
 fs.mkdirSync(buildOutput);
+fs.mkdirSync(appPackages);
 
 
 prepareScript.setInfo({
