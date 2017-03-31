@@ -73,7 +73,7 @@ process.argv[2] = "load=build";
 process.argv[3] = "profile=app.profile.js";
 
 try{
-execSync("node " + 'dojo\\dojo.js' + " load=build profile=app.profile.js",syncArgs);
+execSync("node " + path.join('dojo','dojo.js') + " load=build profile=app.profile.js",syncArgs);
 console.log("build finished");
 } catch(e){
   console.log("build always \"fails\"");
@@ -81,17 +81,9 @@ console.log("build finished");
 
 copyScript.copy({},{});
 
-/*global __dirname */
-/*let basePath = process.cwd();
-utilscripts.cleanApp(path.join(basePath, 'buildOutput/app'));
-utilscripts.cleanFilesInAppSource(basePath);
-
-// delete temporary build files
-fs.unlink(path.join(basePath, 'bower.json'));
-fs.unlink(path.join(basePath, '.bowerrc'));
-fs.unlink(path.join(basePath, 'app.profile.js'));
-
-rimraf(path.join(basePath, 'buildOutput/app-packages'), () => {
+utilscripts.cleanApp(path.join(appRoot, 'buildOutput/app'));
+utilscripts.cleanFilesInAppSource(appRoot);
+rimraf(path.join(appRoot, 'buildOutput/app-packages'), () => {
   console.log('########## BUILD END TIME: ' + new Date() + ' ##########');
-});*/
+});
 
