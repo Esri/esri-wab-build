@@ -73,7 +73,7 @@ process.argv[2] = "load=build";
 process.argv[3] = "profile=app.profile.js";
 
 try{
-execSync("node " + 'dojo/dojo.js' + " load=build profile=app.profile.js",syncArgs);
+execSync("node " + path.join('dojo','dojo.js') + " load=build profile=app.profile.js",syncArgs);
 console.log("build finished");
 } catch(e){
   console.log("build always \"fails\"");
