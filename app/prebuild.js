@@ -184,6 +184,9 @@ function mergeAndWriteWidgetManifests(){
     var manifestJson = fse.readJsonSync(manifestFile, 'utf-8');
     manifestJson.location = path.join(basePath, widgetFolder);
     manifestJson.category = 'widget';
+    if(manifestJson.featureActions){
+      utilscripts.addI18NFeatureActionsLabel(manifestJson);
+    }
     utilscripts.addI18NLabel(manifestJson);
     
     delete manifestJson.location;
