@@ -19,7 +19,6 @@ let appRoot = process.cwd();
 rimraf.sync(path.join(appRoot, "build-src"));
 fs.mkdirSync(path.join(appRoot, "build-src"));
 
-fs.copySync(path.join(__dirname,".bowerrc"),path.join(appRoot,"build-src",".bowerrc"));
 fs.copySync(path.join(appRoot,"jimu.js"),path.join(appRoot,"build-src","jimu.js"));
 fs.copySync(path.join(appRoot,"config.json"),path.join(appRoot,"build-src","config.json"));
 fs.copySync(path.join(appRoot,"widgets"),path.join(appRoot,"build-src","widgets"));
@@ -38,7 +37,7 @@ const apiVersionIndex = envJs.tokens.findIndex(function(token){
   return false;
 });
 const apiVersion = envJs.tokens[apiVersionIndex + 2].value;
-execSync("bower install arcgis-js-api#" + apiVersion + " --force-latest",syncArgs);
+execSync("bower install arcgis-js-api#" + apiVersion + " --force-latest  --config.directory=.",syncArgs);
 
 let buildOutput = appRoot + path.sep + 'buildOutput';
 let appPackages = buildOutput + path.sep + 'app-packages';
