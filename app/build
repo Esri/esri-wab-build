@@ -12,11 +12,12 @@ const copyScript = require('./copyapp');
 const process = require('process');
 const execSync = require('child_process').execSync;
 const babylon = require('babylon');
+const zipFolder = require('zip-folder');
 
 let appRoot = process.cwd();
 
-rimraf.sync(path.join(appRoot,"build-src"));
-fs.mkdirSync(path.join(appRoot,"build-src"));
+rimraf.sync(path.join(appRoot, "build-src"));
+fs.mkdirSync(path.join(appRoot, "build-src"));
 
 fs.copySync(path.join(__dirname,".bowerrc"),path.join(appRoot,"build-src",".bowerrc"));
 fs.copySync(path.join(appRoot,"jimu.js"),path.join(appRoot,"build-src","jimu.js"));
@@ -26,7 +27,7 @@ fs.copySync(path.join(appRoot,"themes"),path.join(appRoot,"build-src","themes"))
 fs.copySync(path.join(appRoot,"libs"),path.join(appRoot,"build-src","libs"));
 fs.copySync(path.join(appRoot,"dynamic-modules"),path.join(appRoot,"build-src","dynamic-modules"));
 
-const syncArgs = {cwd:path.join(appRoot,"build-src"),stdio:[0,1,2]};
+const syncArgs = { cwd: path.join(appRoot, "build-src"), stdio: [0, 1, 2] };
 
 const envJsAsText = fs.readFileSync('./env.js', "utf8");
 const envJs = babylon.parse(envJsAsText);
@@ -58,7 +59,7 @@ console.log("Current location: " + process.cwd());
 let loadModule = "build";
 
 dojoConfig = {
-  baseUrl: path.join(process.cwd(),"build-src"), // Where we will put our packages
+  baseUrl: path.join(process.cwd(), "build-src"), // Where we will put our packages
   async: 1, // We want to make sure we are using the "modern" loader
   hasCache: {
     "host-node": 1, // Ensure we "force" the loader into Node.js mode
@@ -70,10 +71,11 @@ dojoConfig = {
   // explicit about our package map.
   packages: [{
     name: "dojo",
-    location: path.join(appRoot,"build-src","dojo")
-  }, 
-{    name: "build",
-    location: path.join(appRoot,"build-src","util/build")
+    location: path.join(appRoot, "build-src", "dojo")
+  },
+  {
+    name: "build",
+    location: path.join(appRoot, "build-src", "util/build")
   }],
   deps: [loadModule] // And array of modules to load on "boot"
 };
@@ -81,18 +83,24 @@ dojoConfig = {
 process.argv[2] = "load=build";
 process.argv[3] = "profile=app.profile.js";
 
-try{
-execSync("node " + path.join('dojo','dojo.js') + " load=build profile=app.profile.js",syncArgs);
-console.log("build finished");
-} catch(e){
+try {
+  execSync("node " + path.join('dojo', 'dojo.js') + " load=build profile=app.profile.js", syncArgs);
+  console.log("build finished");
+} catch (e) {
   console.log("build always \"fails\"");
 }
 
-copyScript.copy({},{});
+copyScript.copy({}, {});
 
 utilscripts.cleanApp(path.join(appRoot, 'buildOutput/app'));
 utilscripts.cleanFilesInAppSource(appRoot);
 rimraf(path.join(appRoot, 'buildOutput/app-packages'), () => {
-  console.log('########## BUILD END TIME: ' + new Date() + ' ##########');
+  zipFolder('buildOutput/app', 'buildOutput/app.zip', function (err) {
+    if (err) {
+      console.log('oh no!', err);
+    } else {
+      console.log('########## BUILD END TIME: ' + new Date() + ' ##########');
+    }
+  });
 });
 
