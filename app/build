@@ -11,14 +11,13 @@ const prepareScript = require('./prebuild');
 const copyScript = require('./copyapp');
 const process = require('process');
 const execSync = require('child_process').execSync;
+const babylon = require('babylon');
 
 let appRoot = process.cwd();
 
 rimraf.sync(path.join(appRoot,"build-src"));
 fs.mkdirSync(path.join(appRoot,"build-src"));
 
-fs.copySync(path.join(__dirname,"bower.json"),path.join(appRoot,"build-src","bower.json"));
-fs.copySync(path.join(__dirname,".bowerrc"),path.join(appRoot,"build-src",".bowerrc"));
 fs.copySync(path.join(appRoot,"jimu.js"),path.join(appRoot,"build-src","jimu.js"));
 fs.copySync(path.join(appRoot,"config.json"),path.join(appRoot,"build-src","config.json"));
 fs.copySync(path.join(appRoot,"widgets"),path.join(appRoot,"build-src","widgets"));
@@ -28,7 +27,16 @@ fs.copySync(path.join(appRoot,"dynamic-modules"),path.join(appRoot,"build-src","
 
 const syncArgs = {cwd:path.join(appRoot,"build-src"),stdio:[0,1,2]};
 
-execSync("bower install",syncArgs);
+const envJsAsText = fs.readFileSync('./env.js', "utf8");
+const envJs = babylon.parse(envJsAsText);
+const apiVersionIndex = envJs.tokens.findIndex(function(token){
+  if(token.value === 'apiVersion'){
+    return true;
+  }
+  return false;
+});
+const apiVersion = envJs.tokens[apiVersionIndex + 2].value;
+execSync("bower install arcgis-js-api#" + apiVersion + " --force-latest  --config.directory=.",syncArgs);
 
 let buildOutput = appRoot + path.sep + 'buildOutput';
 let appPackages = buildOutput + path.sep + 'app-packages';
