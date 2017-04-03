@@ -1,40 +1,40 @@
 {
-  "author": {
-    "name": "George Bochenek",
-    "email": "gbochenek@esri.com"
-  },
-  "name": "esri-wab-build",
-  "version": "0.0.5",
-  "description": "Build ESRI Web App Builder Applications for performance.",
-  "license": "Apache",
-  "main": "app/build",
-  "bin": "./app/build",
-  "man": "./man/doc.1",
-  "keywords": [
-    "Esri",
-    "ArcGIS",
-    "Web",
-    "AppBuilder",
-    "WebAppBuilder",
-    "WAB",
-    "Build",
-    "Builder"
-  ],
-  "engines": {
-    "node": ">=6.9.4"
-  },
-  "files": [
-    "app",
-    "man"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gbochenek/esri-wab-build"
-  },
-  "dependencies": {
-    "babylon": "^6.16.1",
-    "fs-extra": "^0.11.0",
-    "requirejs": "^2.1.14",
-    "rimraf": "^2.6.1"
-  }
+	"author": {
+		"name": "George Bochenek",
+		"email": "gbochenek@esri.com"
+	},
+	"name": "esri-wab-build",
+	"version": "0.0.5",
+	"description": "Build ESRI Web App Builder Applications for performance.",
+	"license": "Apache",
+	"main": "app/build",
+	"bin": "./app/build",
+	"man": "./man/doc.1",
+	"keywords": [
+		"Esri",
+		"ArcGIS",
+		"Web",
+		"AppBuilder",
+		"WebAppBuilder",
+		"WAB",
+		"Build",
+		"Builder"
+	],
+	"engines": {
+		"node": ">=6.9.4"
+	},
+	"files": [
+		"app",
+		"man"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/gbochenek/esri-wab-build"
+	},
+	"dependencies": {
+		"fs-extra": "^0.11.0",
+    	"requirejs": "^2.1.14",
+    	"rimraf": "^2.6.1"
+	}
+
 }
