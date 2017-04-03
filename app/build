@@ -88,7 +88,7 @@ utilscripts.cleanFilesInAppSource(appRoot);
 rimraf(path.join(appRoot, 'buildOutput/app-packages'), () => {
   zipFolder('buildOutput/app', 'buildOutput/app.zip', function (err) {
     if (err) {
-      console.log('oh no!', err);
+      console.log('Oh no! There was an error zipping the final build.', err);
     } else {
       console.log('########## BUILD END TIME: ' + new Date() + ' ##########');
     }
