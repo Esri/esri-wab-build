@@ -386,14 +386,6 @@ function copyAppBuildPackages(from, to) {
 }
 
 function changeApiUrlOnEnv(from, to){
-  var appConfig = fse.readJsonSync(path.join(from, 'config.json'));
-  var portalUrl = appConfig.portalUrl;
-  if (!portalUrl) {
-    return;
-  }
-  if (portalUrl.substr(portalUrl.length - 1, portalUrl.length) !== '/') {
-    portalUrl = portalUrl + '/';
-  }
   var apiUrl = '//js.arcgis.com/3.19';
   var fileContent = fs.readFileSync(path.join(to, 'env.js'), {encoding: 'utf-8'});
 
