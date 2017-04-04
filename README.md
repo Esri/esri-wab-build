@@ -1,4 +1,5 @@
-[![NPM version](https://img.shields.io/npm/v/esri-wab-build.svg)](https://www.npmjs.com/package/esri-wab-build)
+[![NPM version](https://img.shields.io/npm/v/esri-wab-build.svg)](https://www.npmjs.com/package/esri-wab-build)[![NPM version](https://img.shields.io/npm/dt/esri-wab-build.svg)](https://www.npmjs.com/package/esri-wab-build)
+
 
 # esri-wab-build
 Package used to build ESRI Web App Builder (2.3) Apps for production.
