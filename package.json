@@ -7,8 +7,8 @@
   "version": "0.0.5",
   "description": "Build ESRI Web App Builder Applications for performance.",
   "license": "Apache",
-  "main": "app/build",
-  "bin": "./app/build",
+  "main": "app/build.js",
+  "bin": "./app/build.js",
   "man": "./man/doc.1",
   "keywords": [
     "Esri",
