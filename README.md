@@ -7,13 +7,19 @@ Based largely around the scripts built by Junshan Liu (@qlqllu) at https://geone
 
 ## Requirements:
 * Bower (validated with 1.8.0)
+  installation : npm install -g bower
 * Nodejs (validated with 6.9.4)
 * Java 7 or greater
 * Git
 
-## To run:
-1. ```npm install -g esri-wab-build bower```
+## Install  and run globaly:
+1. ```npm install -g esri-wab-build```
 2. navigate to the application to be built
 3. ```esri-wab-build```
+
+## Install  and run localy:
+1. navigate to the application to be built
+2. ```npm install esri-wab-build --save```
+3. ```node esri-wab-build/bin/build.js```
 
 The build output will be located in buildOut\app and compressed in buildOut\app.zip
