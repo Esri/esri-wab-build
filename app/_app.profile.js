@@ -1,15 +1,14 @@
 profile = {
-
   // relative to this file
   basePath: ".",
   releaseDir: "../buildOutput",
-  action: 'release',
-  version: '1.0.0',
-  releaseName: 'app-packages',
-  optimize: 'closure', // requires Java 6 or later: http://code.google.com/p/closure-compiler/wiki/FAQ
+  action: "release",
+  version: "1.0.0",
+  releaseName: "app-packages",
+  optimize: "closure", // requires Java 6 or later: http://code.google.com/p/closure-compiler/wiki/FAQ
   useSourceMaps: false,
-  layerOptimize: 'closure',
-  cssOptimize: 'comments',
+  layerOptimize: "closure",
+  cssOptimize: "comments",
   copyTests: false,
   internStrings: true,
   mini: true,
@@ -19,57 +18,68 @@ profile = {
   selectorEngine: "acme",
   stripConsole: "none",
 
-  packages: [{
-    name: "dojo",
-    location: "./dojo"
-  }, {
-    name: "dijit",
-    location: "./dijit"
-  }, {
-    name: "dojox",
-    location: "./dojox"
-  }, 
-  {
-    name: "put-selector",
-    location: "./put-selector"
-  }, {
-    name: "xstyle",
-    location: "./xstyle"
-  }, {
-    name: "dgrid",
-    location: "./dgrid"
-  }, 
-  {
-    name: "dgrid1",
-    location: "./dgrid1"
-  },
-  {
-    name: "dstore",
-    location: "./dstore"
-  },
-  {
-    name: "moment",
-    location: "./moment"
-  },
-  {
-    name: "esri",
-    location: "./esri"
-  }, {
-    name: "jimu",
-    location: "./jimu.js"
-  }, {
-    name: "widgets",
-    location: "./widgets"
-  }, {
-    name: "themes",
-    location: "./themes"
-  }, {
-    name: "libs",
-    location: "./libs"
-  }, {
-    name: "dynamic-modules",
-    location: "./dynamic-modules"
-  }],
+  packages: [
+    {
+      name: "dojo",
+      location: "./dojo"
+    },
+    {
+      name: "dijit",
+      location: "./dijit"
+    },
+    {
+      name: "dojox",
+      location: "./dojox"
+    },
+    {
+      name: "put-selector",
+      location: "./put-selector"
+    },
+    {
+      name: "xstyle",
+      location: "./xstyle"
+    },
+    {
+      name: "dgrid",
+      location: "./dgrid"
+    },
+    {
+      name: "dgrid1",
+      location: "./dgrid1"
+    },
+    {
+      name: "dstore",
+      location: "./dstore"
+    },
+    {
+      name: "moment",
+      location: "./moment"
+    },
+    {
+      name: "esri",
+      location: "./esri"
+    },
+    {
+      name: "jimu",
+      location: "./jimu.js"
+    },
+    {
+      name: "widgets",
+      location: "./widgets"
+    },
+    {
+      name: "themes",
+      location: "./themes"
+    },
+    {
+      name: "libs",
+      location: "./libs"
+    },
+    {
+      name: "dynamic-modules",
+      location: "./dynamic-modules"
+    }
+  ],
 
   layers: {
     "dynamic-modules/preload": {
@@ -79,12 +89,26 @@ profile = {
       include: []
     },
     "jimu/main": {
-      include: ["jimu/BaseWidget", "jimu/BaseWidgetFrame", "jimu/BaseWidgetPanel",
-        "jimu/BaseWidgetSetting", "jimu/symbolUtils", "jimu/filterUtils", "jimu/utils",
-        "jimu/portalUrlUtils", "jimu/portalUtils", "jimu/tokenUtils", "jimu/ConfigManager",
-        "jimu/WidgetManager", "jimu/PanelManager", "jimu/DataManager", "jimu/LayoutManager",
-        "jimu/PoolControllerMixin", "jimu/SpatialReference/utils",
-        "jimu/LayerInfos/LayerInfos", "jimu/dijit-all",
+      include: [
+        "jimu/BaseWidget",
+        "jimu/BaseWidgetFrame",
+        "jimu/BaseWidgetPanel",
+        "jimu/BaseWidgetSetting",
+        "jimu/symbolUtils",
+        "jimu/filterUtils",
+        "jimu/utils",
+        "jimu/portalUrlUtils",
+        "jimu/portalUtils",
+        "jimu/tokenUtils",
+        "jimu/ConfigManager",
+        "jimu/WidgetManager",
+        "jimu/PanelManager",
+        "jimu/DataManager",
+        "jimu/LayoutManager",
+        "jimu/PoolControllerMixin",
+        "jimu/SpatialReference/utils",
+        "jimu/LayerInfos/LayerInfos",
+        "jimu/dijit-all",
         "jimu/LayerInfos/LayerInfoForCollection",
         "jimu/LayerInfos/LayerInfoForMapService",
         "jimu/LayerInfos/LayerInfoForKML",
@@ -99,25 +123,43 @@ profile = {
         "jimu/LayerInfos/LayerInfoForDefaultImage",
         "jimu/LayerInfos/LayerInfoForDefaultStream"
       ],
-      exclude: ['esri/main', 'libs/main']
+      exclude: ["esri/main", "libs/main"]
     },
     "jimu/dijit-all": {
-      include: ['jimu/dijit/LoadingIndicator',
-      'jimu/dijit/LoadingShelter', 'jimu/dijit/Message', 'jimu/dijit/Popup',
-      'jimu/dijit/RadioBtn', "jimu/dijit/CheckBox", "jimu/dijit/SymbolChooser",
-      'jimu/dijit/Search', 'jimu/dijit/ServiceURLInput',
-      'jimu/dijit/SimpleTable', 'jimu/dijit/TabContainer', "jimu/dijit/ColorPicker",
-      'jimu/dijit/TabContainer3', 'jimu/dijit/TileLayoutContainer', "jimu/dijit/DrawBox",
-      'jimu/dijit/URLInput'],
-      exclude: ['esri/main', 'libs/main'],
+      include: [
+        "jimu/dijit/LoadingIndicator",
+        "jimu/dijit/LoadingShelter",
+        "jimu/dijit/Message",
+        "jimu/dijit/Popup",
+        "jimu/dijit/RadioBtn",
+        "jimu/dijit/CheckBox",
+        "jimu/dijit/SymbolChooser",
+        "jimu/dijit/Search",
+        "jimu/dijit/ServiceURLInput",
+        "jimu/dijit/SimpleTable",
+        "jimu/dijit/TabContainer",
+        "jimu/dijit/ColorPicker",
+        "jimu/dijit/TabContainer3",
+        "jimu/dijit/TileLayoutContainer",
+        "jimu/dijit/DrawBox",
+        "jimu/dijit/URLInput"
+      ],
+      exclude: ["esri/main", "libs/main"],
       discard: true
     },
     "libs/main": {},
-    "esri/main": {include: ["esri/jsapi"]},
-    "dgrid/main": {include: ['dgrid/OnDemandGrid', 'dgrid/List', 'dgrid/util/misc', 'dgrid/OnDemandList']},
+    "esri/main": { include: ["esri/jsapi"] },
+    "dgrid/main": {
+      include: [
+        "dgrid/OnDemandGrid",
+        "dgrid/List",
+        "dgrid/util/misc",
+        "dgrid/OnDemandList"
+      ]
+    },
 
     //xstyle include put-selector
-    "xstyle/main": {include: ['xstyle/main']}
+    "xstyle/main": { include: ["xstyle/main"] }
   },
 
   // since this build it intended to be utilized with properly-expressed AMD modules;
@@ -128,36 +170,35 @@ profile = {
   // the settings below are optimized for the smallest AMD loader that is configurable
   // and include dom-ready support
   staticHasFeatures: {
-    'config-dojo-loader-catches': 0,
-    'config-tlmSiblingOfDojo': 0,
-    'dojo-amd-factory-scan': 0,
-    'dojo-combo-api': 0,
-    'dojo-config-api': 1,
-    'dojo-config-require': 0,
-    'dojo-debug-messages': 0,
-    'dojo-dom-ready-api': 1,
-    'dojo-firebug': 0,
-    'dojo-guarantee-console': 1,
-    'dojo-has-api': 1,
-    'dojo-inject-api': 1,
-    'dojo-loader': 1,
-    'dojo-log-api': 0,
-    'dojo-modulePaths': 0,
-    'dojo-moduleUrl': 0,
-    'dojo-publish-privates': 0,
-    'dojo-requirejs-api': 0,
-    'dojo-sniff': 0,
-    'dojo-sync-loader': 0,
-    'dojo-test-sniff': 0,
-    'dojo-timeout-api': 0,
-    'dojo-trace-api': 0,
+    "config-dojo-loader-catches": 0,
+    "config-tlmSiblingOfDojo": 0,
+    "dojo-amd-factory-scan": 0,
+    "dojo-combo-api": 0,
+    "dojo-config-api": 1,
+    "dojo-config-require": 0,
+    "dojo-debug-messages": 0,
+    "dojo-dom-ready-api": 1,
+    "dojo-firebug": 0,
+    "dojo-guarantee-console": 1,
+    "dojo-has-api": 1,
+    "dojo-inject-api": 1,
+    "dojo-loader": 1,
+    "dojo-log-api": 0,
+    "dojo-modulePaths": 0,
+    "dojo-moduleUrl": 0,
+    "dojo-publish-privates": 0,
+    "dojo-requirejs-api": 0,
+    "dojo-sniff": 0,
+    "dojo-sync-loader": 0,
+    "dojo-test-sniff": 0,
+    "dojo-timeout-api": 0,
+    "dojo-trace-api": 0,
     //'dojo-undef-api': 0,
-    'dojo-v1x-i18n-Api': 1, // we still need i18n.getLocalization
-    'dojo-xhr-factory': 0,
-    'dom': 1,
-    'host-browser': 1,
-    'extend-dojo': 1,
-    'extend-esri': 0
+    "dojo-v1x-i18n-Api": 1, // we still need i18n.getLocalization
+    "dojo-xhr-factory": 0,
+    dom: 1,
+    "host-browser": 1,
+    "extend-dojo": 1,
+    "extend-esri": 0
   }
-
 };
