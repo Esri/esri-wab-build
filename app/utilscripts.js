@@ -378,8 +378,6 @@ function copyPartAppSrc(from, to) {
   docopy(path.join(from, 'config-readme.txt'), path.join(to, 'config-readme.txt'));
   docopy(path.join(from, 'readme.html'), path.join(to, 'readme.html'));
   docopy(path.join(from, 'configs'), path.join(to, 'configs'), true);
-
-  changeApiUrlOnEnv(from, to);
 }
 
 function copyFullAppSrc(from, to) {
@@ -414,18 +412,6 @@ function copyAppBuildPackages(from, to) {
     path.join(to, 'predefined-apps/default/config.json'), true);
   docopy(path.join(from, 'config.json'),
     path.join(to, 'config.json'));
-}
-
-function changeApiUrlOnEnv(from, to){
-  var apiUrl = '//js.arcgis.com/3.19';
-  var fileContent = fs.readFileSync(path.join(to, 'env.js'), { encoding: 'utf-8' });
-
-  fileContent = fileContent.replace(
-    '//apiUrl=[POINT_TO_ARCGIS_API_FOR_JAVASCRIPT];',
-    'apiUrl = "' + apiUrl + '";'
-  );
-
-  fs.writeFileSync(path.join(to, 'env.js'), fileContent, 'utf-8');
 }
 
 function docopy(s, d, check) {
