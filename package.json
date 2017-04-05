@@ -32,7 +32,7 @@
     "url": "https://github.com/gbochenek/esri-wab-build"
   },
   "dependencies": {
-    "fs-extra": "^2.1.2",
+    "fs-extra": "^0.11.0",
     "requirejs": "^2.1.14",
     "rimraf": "^2.6.1",
     "zip-folder": "^1.0.0"
