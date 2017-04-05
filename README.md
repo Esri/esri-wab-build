@@ -20,6 +20,6 @@ Based largely around the scripts built by Junshan Liu (@qlqllu) at https://geone
 ## Install  and run localy:
 1. navigate to the application to be built
 2. ```npm install esri-wab-build --save```
-3. ```node esri-wab-build/bin/build```
+3. ```node esri-wab-build/app/build```
 
 The build output will be located in buildOut\app and compressed in buildOut\app.zip
