@@ -1,4 +1,4 @@
-[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![NPM version](https://img.shields.io/npm/v/esri-wab-build.svg)](https://www.npmjs.com/package/esri-wab-build) [![NPM total download](https://img.shields.io/npm/dt/esri-wab-build.svg)](https://www.npmjs.com/package/esri-wab-build) [![dependencies](https://david-dm.org/gbochenek/esri-wab-build.svg)](https://david-dm.org/gbochenek/esri-wab-build) [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 # esri-wab-build
 Package used to build ESRI Web App Builder (2.3) Apps for production.
