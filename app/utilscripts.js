@@ -154,7 +154,8 @@ function writeWidgetSettingResourceModule(basePath, widgetName) {
   );
 }
 
-function get
+function getWidgetSettingTemplateModule(widget) {
+  var str;
   if (
     fs.existsSync(
       path.join(widget.basePath, "widgets", widget.name, "setting/Setting.html")
