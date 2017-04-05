@@ -562,6 +562,7 @@ function dodelete(f, check) {
 //visit all of the folder's file and its sub-folders.
 //if callback function return true, stop visit.
 function visitFolderFiles(folderPath, cb) {
+  var files = fs.readdirSync(folderPath);
   files.forEach(function(fileName) {
     var filePath = path.normalize(folderPath + "/" + fileName);
 
