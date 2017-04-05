@@ -489,8 +489,6 @@ function copyPartAppSrc(from, to) {
   );
   docopy(path.join(from, "readme.html"), path.join(to, "readme.html"));
   docopy(path.join(from, "configs"), path.join(to, "configs"), true);
-
-  changeApiUrlOnEnv(from, to);
 }
 
 function copyFullAppSrc(from, to) {
