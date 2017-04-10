@@ -7,6 +7,7 @@ exports.writeWidgetResourceModule = writeWidgetResourceModule;
 exports.writeWidgetSettingResourceModule = writeWidgetSettingResourceModule;
 exports.writeThemeResourceModule = writeThemeResourceModule;
 exports.visitElement = visitElement;
+exports.addI18NFeatureActionsLabel = addI18NFeatureActionsLabel;
 exports.addI18NLabel = addI18NLabel;
 exports.getAmdFolderFromUri = getAmdFolderFromUri;
 exports.copyPartAppSrc = copyPartAppSrc;
@@ -320,6 +321,36 @@ function getThemeNlsModule(basePath, options) {
   return modules;
 }
 
+function addI18NFeatureActionsLabel(manifest) {
+  if (!fs.existsSync(path.join(manifest.location, 'nls'))) {
+    return;
+  }
+  // get feature actions
+  var featureActions = manifest.featureActions;
+  featureActions.forEach(function(featureAction){
+    manifest["i18nLabels_featureAction_" + featureAction.name] = {};
+    //theme or widget label
+    var key = '_featureAction_' + featureAction.name;
+    var defaultStrings = requirejs(path.join(manifest.location, 'nls/strings.js'));
+    if (defaultStrings.root && defaultStrings.root[key]) {
+      manifest["i18nLabels_featureAction_" + featureAction.name].defaultLabel = defaultStrings.root[key];
+    }
+    for (var p in defaultStrings) {
+      if (p === 'root' || !defaultStrings[p]) {
+        continue;
+      }
+      if (!fs.existsSync(path.join(manifest.location, 'nls', p, 'strings.js'))) {
+        continue;
+      }
+
+      var localeStrings = requirejs(path.join(manifest.location, 'nls', p, 'strings.js'));
+      if (localeStrings[key]) {
+        manifest["i18nLabels_featureAction_" + featureAction.name][p] = localeStrings[key];
+      }
+    }
+  });
+}
+
 function addI18NLabel(manifest) {
   manifest.i18nLabels = {};
   if (!fs.existsSync(path.join(manifest.location, "nls"))) {
@@ -458,8 +489,6 @@ function copyPartAppSrc(from, to) {
   );
   docopy(path.join(from, "readme.html"), path.join(to, "readme.html"));
   docopy(path.join(from, "configs"), path.join(to, "configs"), true);
-
-  changeApiUrlOnEnv(from, to);
 }
 
 function copyFullAppSrc(from, to) {
@@ -502,28 +531,6 @@ function copyAppBuildPackages(from, to) {
     true
   );
   docopy(path.join(from, "config.json"), path.join(to, "config.json"));
-}
-
-function changeApiUrlOnEnv(from, to) {
-  var appConfig = fse.readJsonSync(path.join(from, "config.json"));
-  var portalUrl = appConfig.portalUrl;
-  if (!portalUrl) {
-    return;
-  }
-  if (portalUrl.substr(portalUrl.length - 1, portalUrl.length) !== "/") {
-    portalUrl = portalUrl + "/";
-  }
-  var apiUrl = "//js.arcgis.com/3.19";
-  var fileContent = fs.readFileSync(path.join(to, "env.js"), {
-    encoding: "utf-8"
-  });
-
-  fileContent = fileContent.replace(
-    "//apiUrl=[POINT_TO_ARCGIS_API_FOR_JAVASCRIPT];",
-    'apiUrl = "' + apiUrl + '";'
-  );
-
-  fs.writeFileSync(path.join(to, "env.js"), fileContent, "utf-8");
 }
 
 function docopy(s, d, check) {
