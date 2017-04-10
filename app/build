@@ -36,7 +36,7 @@ const apiVersionIndex = envJs.tokens.findIndex(function (token) {
   return false;
 });
 const apiVersion = envJs.tokens[apiVersionIndex + 2].value;
-execSync("bower install arcgis-js-api#" + apiVersion + " --force-latest  --config.directory=.", syncArgs);
+execSync("bower install esri=arcgis-js-api#" + apiVersion + " --force-latest  --config.directory=.", syncArgs);
 
 let buildOutput = appRoot + path.sep + 'buildOutput';
 let appPackages = buildOutput + path.sep + 'app-packages';
