@@ -4,7 +4,7 @@
     "email": "gbochenek@esri.com"
   },
   "name": "esri-wab-build",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Build ESRI Web App Builder Applications for performance.",
   "license": "Apache",
   "main": "app/build",
