@@ -4,7 +4,7 @@
     "email": "gbochenek@esri.com"
   },
   "name": "esri-wab-build",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build ESRI Web App Builder Applications for performance.",
   "license": "Apache",
   "main": "app/build",
@@ -33,9 +33,9 @@
   },
   "dependencies": {
     "fs-extra": "^3.0.1",
-    "husky": "^0.13.3",
-    "lint-staged": "^3.4.0",
-    "prettier": "^0.22.0",
+    "husky": "^0.14.1",
+    "lint-staged": "^4.0.0",
+    "prettier": "^1.5.2",
     "requirejs": "^2.1.14",
     "rimraf": "^2.6.1",
     "zip-folder": "^1.0.0"
