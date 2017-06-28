@@ -32,7 +32,7 @@
     "url": "https://github.com/gbochenek/esri-wab-build"
   },
   "dependencies": {
-    "fs-extra": "^0.11.0",
+    "fs-extra": "^3.0.1",
     "husky": "^0.13.3",
     "lint-staged": "^3.4.0",
     "prettier": "^0.22.0",

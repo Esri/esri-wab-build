@@ -322,30 +322,40 @@ function getThemeNlsModule(basePath, options) {
 }
 
 function addI18NFeatureActionsLabel(manifest) {
-  if (!fs.existsSync(path.join(manifest.location, 'nls'))) {
+  if (!fs.existsSync(path.join(manifest.location, "nls"))) {
     return;
   }
   // get feature actions
   var featureActions = manifest.featureActions;
-  featureActions.forEach(function(featureAction){
+  featureActions.forEach(function(featureAction) {
     manifest["i18nLabels_featureAction_" + featureAction.name] = {};
     //theme or widget label
-    var key = '_featureAction_' + featureAction.name;
-    var defaultStrings = requirejs(path.join(manifest.location, 'nls/strings.js'));
+    var key = "_featureAction_" + featureAction.name;
+    var defaultStrings = requirejs(
+      path.join(manifest.location, "nls/strings.js")
+    );
     if (defaultStrings.root && defaultStrings.root[key]) {
-      manifest["i18nLabels_featureAction_" + featureAction.name].defaultLabel = defaultStrings.root[key];
+      manifest[
+        "i18nLabels_featureAction_" + featureAction.name
+      ].defaultLabel = defaultStrings.root[key];
     }
     for (var p in defaultStrings) {
-      if (p === 'root' || !defaultStrings[p]) {
+      if (p === "root" || !defaultStrings[p]) {
         continue;
       }
-      if (!fs.existsSync(path.join(manifest.location, 'nls', p, 'strings.js'))) {
+      if (
+        !fs.existsSync(path.join(manifest.location, "nls", p, "strings.js"))
+      ) {
         continue;
       }
 
-      var localeStrings = requirejs(path.join(manifest.location, 'nls', p, 'strings.js'));
+      var localeStrings = requirejs(
+        path.join(manifest.location, "nls", p, "strings.js")
+      );
       if (localeStrings[key]) {
-        manifest["i18nLabels_featureAction_" + featureAction.name][p] = localeStrings[key];
+        manifest["i18nLabels_featureAction_" + featureAction.name][
+          p
+        ] = localeStrings[key];
       }
     }
   });
@@ -549,11 +559,11 @@ function dodelete(f, check) {
   if (check) {
     if (fs.existsSync(f)) {
       console.log("delete", f);
-      fse.deleteSync(f);
+      fse.removeSync(f);
     }
   } else {
     console.log("delete", f);
-    fse.deleteSync(f);
+    fse.removeSync(f);
   }
 }
 
