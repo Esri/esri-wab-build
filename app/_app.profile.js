@@ -8,6 +8,10 @@ profile = {
   optimize: "closure", // requires Java 6 or later: http://code.google.com/p/closure-compiler/wiki/FAQ
   useSourceMaps: false,
   layerOptimize: "closure",
+  optimizeOptions: {
+    languageIn: 'ECMASCRIPT6',
+    languageOut: 'ECMASCRIPT5'
+  },
   cssOptimize: "comments",
   copyTests: false,
   internStrings: true,
