@@ -97,6 +97,7 @@ profile = {
         "jimu/BaseWidget",
         "jimu/BaseWidgetFrame",
         "jimu/BaseWidgetPanel",
+        "jimu/OnScreenWidgetPanel",
         "jimu/BaseWidgetSetting",
         "jimu/symbolUtils",
         "jimu/filterUtils",
