@@ -3,7 +3,7 @@
 # esri-wab-build
 Package used to build ESRI Web App Builder Apps for production.
 
-Verified and designed for 2D Apps built using Web App Builder for Developers 2.3 or 2.4.
+Verified and designed for 2D Apps built using Web App Builder for Developers 2.3 - 2.7.
 
 This task runs a full dojo build on any web app builder application, which will greatly improve performance.
 
