@@ -6,7 +6,7 @@
   "name": "esri-wab-build",
   "version": "0.1.2",
   "description": "Build ESRI Web App Builder Applications for performance.",
-  "license": "Apache",
+  "license": "Apache-2.0",
   "main": "app/build",
   "bin": "./app/build",
   "man": "./man/doc.1",
