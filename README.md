@@ -16,14 +16,25 @@ Based largely around the scripts built by Junshan Liu (@qlqllu) at https://geone
 * Java 7 or greater
 * Git
 
+## Warning
+If you see an error around dojo-themes, run: ```bower cache clear``` and try again.
+
+## Install and run locally:
+
+### Setup
+1. Navigate to the application to be built
+2. Create a project.json file (if one does not exist): ```npm init```
+3. ```npm install --save-dev esri-wab-build```
+4. Add the following to your package.json's scripts object ```"build": "esri-wab-build"```
+5. Any user that downloads your application will now be able to build:
+
+### Build
+1. ```npm install```
+2. ```npm run build```
+
 ## Install  and run globaly:
 1. ```npm install -g esri-wab-build```
 2. navigate to the application to be built
 3. ```esri-wab-build```
-
-## Install  and run localy:
-1. navigate to the application to be built
-2. ```npm install esri-wab-build --save```
-3. ```node esri-wab-build/app/build```
 
 The build output will be located in buildOut\app and compressed in buildOut\app.zip
