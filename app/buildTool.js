@@ -1,4 +1,4 @@
-exports.build = function() {
+exports.build = function(buildPath) {
   console.log("########## BUILD START TIME: " + new Date() + " ##########");
 
   const fs = require("fs-extra");
@@ -12,7 +12,7 @@ exports.build = function() {
   const zipFolder = require("zip-folder");
   const babylon = require("babylon");
 
-  let appRoot = process.cwd();
+  const appRoot = buildPath || process.cwd();
 
   rimraf.sync(path.join(appRoot, "build-src"));
   fs.mkdirSync(path.join(appRoot, "build-src"));
@@ -44,7 +44,7 @@ exports.build = function() {
 
   const syncArgs = { cwd: path.join(appRoot, "build-src"), stdio: [0, 1, 2] };
 
-  const envJsAsText = fs.readFileSync("./env.js", "utf8");
+  const envJsAsText = fs.readFileSync(path.join(appRoot, "env.js"), "utf8");
   const envJs = babylon.parse(envJsAsText);
   const apiVersionIndex = envJs.tokens.findIndex(function(token) {
     if (token.value === "apiVersion") {
