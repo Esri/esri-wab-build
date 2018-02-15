@@ -11,7 +11,7 @@ Based largely around the scripts built by Junshan Liu (@qlqllu) at https://geone
 
 ## Requirements:
 * Bower (validated with 1.8.0)
-  installation : npm install -g bower
+  installation : `npm install -g bower`
 * Nodejs (validated with 6.9.4)
 * Java 7 or greater
 * Git
@@ -37,4 +37,4 @@ If you see an error around dojo-themes, run: ```bower cache clear``` and try aga
 2. navigate to the application to be built
 3. ```esri-wab-build```
 
-The build output will be located in buildOut\app and compressed in buildOut\app.zip
+The build output will be located in buildOutput\app and compressed in buildOutput\app.zip
