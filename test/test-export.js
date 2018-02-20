@@ -18,6 +18,7 @@ describe("exportApp", () => {
     sinon.stub(exportUtils, "_replaceApiPath");
     exportUtils._replaceApiPath.returns(fakeJs.envWithApiURL);
     sinon.stub(exportUtils, "_replaceProxyConfig");
+    sinon.stub(exportUtils, "_cleanDist");
     sinon.stub(fs, "writeFileSync");
     sinon.stub(fs, "readFileSync");
     fs.readFileSync.returns(fakeJs.fakeConfigStr);
@@ -66,6 +67,7 @@ describe("exportApp", () => {
     exportUtils._copyApp.restore();
     exportUtils._replaceApiPath.restore();
     exportUtils._replaceProxyConfig.restore();
+    exportUtils._cleanDist.restore();
   });
 
   it("should copy all files from web app builder to a tmp directory", () => {
