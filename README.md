@@ -11,7 +11,7 @@ Based largely around the scripts built by Junshan Liu (@qlqllu) at https://geone
 
 ## Requirements:
 * Bower (validated with 1.8.0)
-  installation : npm install -g bower
+  installation : `npm install -g bower`
 * Nodejs (validated with 6.9.4)
 * Java 7 or greater
 * Git
