@@ -32,7 +32,7 @@ If you see an error around dojo-themes, run: ```bower cache clear``` and try aga
 1. ```npm install```
 2. ```npm run build```
 
-## Install  and run globaly:
+## Install  and run globally:
 1. ```npm install -g esri-wab-build```
 2. navigate to the application to be built
 3. ```esri-wab-build```
