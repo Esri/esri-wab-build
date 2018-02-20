@@ -48,3 +48,9 @@ Temporary Items
 
 # node
 node_modules
+
+# built apps
+dist
+
+# vscode
+.vscode
