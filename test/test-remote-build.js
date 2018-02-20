@@ -4,7 +4,7 @@ const remoteBuild = require("../app/remoteBuild");
 const exportUtils = require("../app/exportUtils");
 const buildTool = require("../app/buildTool");
 
-describe("buildApp", () => {
+describe("remoteBuild", () => {
   const fakeAppDirectory =
     "C:/arcgis-web-appbuilder-2.7/WebAppBuilderForArcGIS";
   const fakeTempDir = "C:/tmp/12345";

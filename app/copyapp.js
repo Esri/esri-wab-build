@@ -4,8 +4,7 @@ var fse = require("fs-extra");
 var utilscripts = require("./utilscripts");
 
 /*global __dirname */
-var basePath = path.join(process.cwd(), "build-src");
-var appPackagePath, appOutputPath;
+var appPackagePath, appOutputPath, buildRoot;
 var options = {};
 
 exports.copy = function(pathInfo, _options) {
@@ -24,7 +23,7 @@ exports.copy = function(pathInfo, _options) {
   fs.mkdirSync(path.join(appOutputPath, "jimu.js"));
   fs.mkdirSync(path.join(appOutputPath, "arcgis-js-api"));
 
-  utilscripts.copyPartAppSrc(process.cwd(), appOutputPath);
+  utilscripts.copyPartAppSrc(buildRoot, appOutputPath);
 
   utilscripts.copyAppBuildPackages(appPackagePath, appOutputPath, options);
 
@@ -46,4 +45,12 @@ function setPath(pathInfo) {
   } else {
     appOutputPath = path.join(process.cwd(), "buildOutput/app");
   }
+
+  if (pathInfo.buildRoot) {
+    buildRoot = pathInfo.buildRoot;
+  } else {
+    buildRoot = process.cwd();
+  }
+
+  console.log("Set paths", appPackagePath, appOutputPath);
 }

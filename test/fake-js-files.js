@@ -338,7 +338,7 @@ var
   }
 })(window);`;
 
-exports.envWithApiURL = `///////////////////////////////////////////////////////////////////////////
+exports.envAfterExport = `///////////////////////////////////////////////////////////////////////////
 // Copyright ? 2014 Esri. All Rights Reserved.
 //
 // Licensed under the Apache License Version 2.0 (the "License");
@@ -678,7 +678,7 @@ var
   }
 })(window);`;
 
-exports.fakeConfigObj = {
+exports.fakeConfigStr = `{
   theme: {
     name: "FoldableTheme",
     styles: [
@@ -902,4 +902,4 @@ exports.fakeConfigObj = {
   isWebTier: false,
   httpProxy: { useProxy: true, url: "/proxy.js" },
   dataSource: { dataSources: {}, settings: {} }
-};
+}`;

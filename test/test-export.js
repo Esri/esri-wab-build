@@ -1,71 +1,116 @@
 const assert = require("assert");
 const sinon = require("sinon");
-const fs = require("fs");
+const fs = require("fs-extra");
+const hjson = require("hjson");
+const path = require("path");
+
 const exportUtils = require("../app/exportUtils");
 const fakeJs = require("./fake-js-files");
 
-const fakeEnvJS = "";
-const fakeAppDir = "";
-const fakeTempDir = "c:/tmp/12345";
+const fakeAppDir = "C:/webappbuilder/";
+const fakeTempDir = "12345";
 
 describe("exportApp", () => {
   it("should call methods to copy files, replace the api path, set the proxy config, and clear the app id", () => {
-    sinon.stub(exportUtils, "copyApp");
-    exportUtils.copyApp.returns(fakeTmpDir);
+    sinon.stub(exportUtils, "_copyApp");
+    exportUtils._copyApp.returns(fakeTempDir);
 
-    sinon.stub(exportUtils, "replaceApiPath");
-    exportUtils.replaceApiPath.returns(fakeJs.envWithApiURL);
-    sinon.stub(exportUtils, "replaceProxyConfig");
+    sinon.stub(exportUtils, "_replaceApiPath");
+    exportUtils._replaceApiPath.returns(fakeJs.envWithApiURL);
+    sinon.stub(exportUtils, "_replaceProxyConfig");
+    sinon.stub(fs, "writeFileSync");
+    sinon.stub(fs, "readFileSync");
+    fs.readFileSync.returns(fakeJs.fakeConfigStr);
 
-    const fakeConfig = { test: "test123" };
-    exportUtils.replaceProxyConfig.returns(fakeConfig);
+    const fakeObj = { test: "test123" };
+    exportUtils._replaceProxyConfig.returns(fakeObj);
 
-    exportUtils.exportApp(fakeAppDir);
+    const returnValue = exportUtils.exportApp(fakeAppDir);
 
-    assert.ok(exportUtils.copyApp.calledWith(fakeAppDir));
-    assert.ok(exportUtils.replaceApiPath.called);
     assert.ok(
-      fs.writeFile.calledWith(`${fakeTempDir}/env.js`, fakeJs.envWithApiURL)
+      exportUtils._copyApp.calledWith(fakeAppDir),
+      "copy app was called with the correct parameters"
     );
-    assert.ok(exportUtils.replaceProxyConfig.called);
     assert.ok(
-      fs.writeFile.calledWith(
-        `${fakeTempDir},config.json`,
-        JSON.stringify(fakeConfig)
-      )
+      exportUtils._replaceApiPath.calledWith(fakeJs.fakeConfigStr),
+      "_replaceApiPath was called with file contents"
+    );
+    assert.ok(
+      fs.writeFileSync.calledWith(
+        `${fakeTempDir}/env.js`,
+        fakeJs.envWithApiURL
+      ),
+      "env.js was rewritten correctly on the file system"
+    );
+    assert.ok(
+      exportUtils._replaceProxyConfig.calledWith(
+        hjson.parse(fakeJs.fakeConfigStr)
+      ),
+      "_replaceProxyConfig was called with file contents"
     );
 
-    exportUtils.copyApp.restore();
-    exportUtils.replaceApiPath.restore();
-    exportUtils.replaceProxyConfig.restore();
+    assert.ok(
+      fs.writeFileSync.calledWith(
+        `${fakeTempDir}/config.json`,
+        JSON.stringify(fakeObj)
+      ),
+      "config.json was rewritten correctly on the file system"
+    );
+
+    assert.equal(
+      returnValue,
+      fakeTempDir,
+      "The temp directory path was correctly returned"
+    );
+
+    exportUtils._copyApp.restore();
+    exportUtils._replaceApiPath.restore();
+    exportUtils._replaceProxyConfig.restore();
   });
 
   it("should copy all files from web app builder to a tmp directory", () => {
-    sinon.stub(fs, "mkdtempSync");
-    fs.mkdtempSync.returns(fakeTempDir);
+    sinon.stub(fs, "mkdirSync");
 
-    sinon.stub(fs, "copyFileSync");
-    fs.copyFileSync.returns(true);
+    sinon.stub(fs, "copySync");
+    fs.copySync.returns(true);
 
-    const tempDirPath = exportUtils.copyApp(fakeAppDir);
+    const distDirPath = exportUtils._copyApp(fakeAppDir);
 
-    assert.ok(fs.copyFileSync.calledWith(fakeAppDir, fakeTempDir));
+    const fullDistDir = path.join(process.cwd(), "dist");
 
-    assert.eqaul(fakeTempDir, tempDirPath);
+    assert.ok(
+      fs.copySync.calledWith(fakeAppDir, fullDistDir),
+      `copy sync was called with the correct params`
+    );
 
-    fs.mkdtempSync.restore();
-    fs.copyFileSync.restore();
+    assert.equal(fullDistDir, distDirPath);
+
+    fs.mkdirSync.restore();
+    fs.copySync.restore();
   });
 
   it("should set http proxy config in config.json", () => {
-    const fakeConfigJson = fakeJs.fakeConfigObj;
+    const fakeConfigJson = hjson.parse(fakeJs.fakeConfigStr);
 
-    const newConfig = exportUtils.replaceProxyConfig(fakeConfigJson);
+    const newConfig = exportUtils._replaceProxyConfig(fakeConfigJson);
     const httpProxyConfig = newConfig.httpProxy;
 
     assert.ok(httpProxyConfig.useProxy);
     assert.equal(httpProxyConfig.alwaysUseProxy, false);
-    assert.equal(httpProxyConfig.url.length, 0);
+    assert.equal(typeof httpProxyConfig.url, "string");
+    assert.equal(httpProxyConfig.url, "");
     assert.equal(httpProxyConfig.rules.length, 0);
+  });
+
+  it("should replace the apiPath in env.js", () => {
+    const fakeEnvJs = fakeJs.fakeEnv;
+
+    const newEnvJs = exportUtils._replaceApiPath(fakeEnvJs);
+
+    assert.equal(
+      newEnvJs,
+      fakeJs.envAfterExport,
+      "Successfully uncommented apiUrl from env.js"
+    );
   });
 });

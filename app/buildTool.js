@@ -67,17 +67,19 @@ exports.build = function(buildPath) {
   rimraf.sync(buildOutput);
   fs.mkdirSync(buildOutput);
 
+  prepareScript.setBasePath(appRoot);
+
   prepareScript.setInfo({
-    appConfigFile: process.cwd() + path.sep + "config.json"
+    appConfigFile: appRoot + path.sep + "config.json"
   });
 
   prepareScript.prepare();
-  console.log("Current location: " + process.cwd());
+  console.log("Current location: " + appRoot);
 
   let loadModule = "build";
 
   dojoConfig = {
-    baseUrl: path.join(process.cwd(), "build-src"), // Where we will put our packages
+    baseUrl: path.join(appRoot, "build-src"), // Where we will put our packages
     async: 1, // We want to make sure we are using the "modern" loader
     hasCache: {
       "host-node": 1, // Ensure we "force" the loader into Node.js mode
@@ -115,17 +117,33 @@ exports.build = function(buildPath) {
     console.log('build always "fails"');
   }
 
-  copyScript.copy({}, {});
+  copyScript.copy(
+    {
+      buildRoot: appRoot,
+      appOutputPath: path.join(appRoot, "buildOutput/app"),
+      appPackagePath: path.join(appRoot, "buildOutput/app-packages")
+    },
+    {}
+  );
 
   utilscripts.cleanApp(path.join(appRoot, "buildOutput/app"));
   utilscripts.cleanFilesInAppSource(appRoot);
   rimraf(path.join(appRoot, "buildOutput/app-packages"), () => {
-    zipFolder("buildOutput/app", "buildOutput/app.zip", function(err) {
-      if (err) {
-        console.log("Oh no! There was an error zipping the final build.", err);
-      } else {
-        console.log("########## BUILD END TIME: " + new Date() + " ##########");
+    zipFolder(
+      path.join(appRoot, "buildOutput/app"),
+      path.join(appRoot, "buildOutput/app.zip"),
+      function(err) {
+        if (err) {
+          console.log(
+            "Oh no! There was an error zipping the final build.",
+            err
+          );
+        } else {
+          console.log(
+            "########## BUILD END TIME: " + new Date() + " ##########"
+          );
+        }
       }
-    });
+    );
   });
 };

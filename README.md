@@ -25,16 +25,29 @@ If you see an error around dojo-themes, run: ```bower cache clear``` and try aga
 1. Navigate to the application to be built
 2. Create a project.json file (if one does not exist): ```npm init```
 3. ```npm install --save-dev esri-wab-build```
-4. Add the following to your package.json's scripts object ```"build": "esri-wab-build"```
+4. Add the following to your package.json's scripts object ```"build": "esri-wab-build"``` (Note: an optional parameter can be added to build a remote web app builder app.  For Example:  ```"esri-wab-build C:\arcgis-web-appbuilder-2.7\WebAppBuilderForArcGIS\server\apps\3"```)
 5. Any user that downloads your application will now be able to build:
 
 ### Build
 1. ```npm install```
 2. ```npm run build```
 
+The build output will be located in buildOut\app and compressed in buildOut\app.zip
+
 ## Install  and run globaly:
 1. ```npm install -g esri-wab-build```
-2. navigate to the application to be built
-3. ```esri-wab-build```
+2. ```esri-wab-build <location-of-app>```
 
-The build output will be located in buildOut\app and compressed in buildOut\app.zip
+The build output will be located in dist\buildOut\app and compressed in dist\buildOut\app.zip
+
+## Scripting
+This tool can be used as a library with the following functions:
+
+* ```remoteBuild.buildApp(buildPath)```
+  * Export and build the Web App Builder Application located at ```buildPath``` into a dist directory
+  * Note: ```buildPath``` can be an application located in ```<web-app-builder-home>/server/apps/#```
+* ```buildTool.buildApp(buildPath)```
+  *  Build the Web App Builder Application located at ```buildPath```
+* ```exportUtils.exportApp(buildPath)```
+  * Export the Web App Builder Application located at ```buildPath``` to a dist directory.
+  * Note: ```buildPath``` can be an application located in ```<web-app-builder-home>/server/apps/#```

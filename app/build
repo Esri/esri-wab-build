@@ -1,5 +1,15 @@
 #!/usr/bin/env node
 
 const buildTool = require('./buildTool');
+const remoteBuild = require('./remoteBuild');
+const process = require('process');
 
-buildTool.build();
+
+const args = process.argv;
+
+
+if (args.length > 2){
+   remoteBuild.buildApp(args[2]);
+} else {
+    buildTool.build();
+}
