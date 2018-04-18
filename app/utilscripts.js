@@ -488,7 +488,6 @@ function visitElement(config, cb) {
 
 function copyPartAppSrc(from, to) {
   docopy(path.join(from, "index.html"), path.join(to, "index.html"));
-  docopy(path.join(from, "env.js"), path.join(to, "env.js"));
   docopy(path.join(from, "init.js"), path.join(to, "init.js"));
   docopy(path.join(from, "simpleLoader.js"), path.join(to, "simpleLoader.js"));
   docopy(path.join(from, "web.config"), path.join(to, "web.config"));
@@ -499,6 +498,9 @@ function copyPartAppSrc(from, to) {
   );
   docopy(path.join(from, "readme.html"), path.join(to, "readme.html"));
   docopy(path.join(from, "configs"), path.join(to, "configs"), true);
+  
+  // copies env.js from 2 to
+  changeApiUrlOnEnv(from, to);
 }
 
 function copyFullAppSrc(from, to) {
@@ -530,6 +532,19 @@ function copyFullAppSrc(from, to) {
 }
 
 function copyAppBuildPackages(from, to) {
+  docopy(path.join(from, "dgrid/css"), path.join(to, "arcgis-js-api/dgrid/css"));
+  docopy(path.join(from, "dijit/themes/claro/claro.css"), path.join(to, "arcgis-js-api/dijit/themes/claro/claro.css"));
+  docopy(path.join(from, "dojo/resources"), path.join(to, "arcgis-js-api/dojo/resources"));
+  docopy(path.join(from, "dojo/dojo.js"), path.join(to, "arcgis-js-api/dojo/dojo.js"));
+  docopy(path.join(from, "dojo/nls"), path.join(to, "arcgis-js-api/dojo/nls"));
+  docopy(path.join(from, "dojox/gfx/svg.js"), path.join(to, "arcgis-js-api/dojox/gfx/svg.js"));
+  docopy(path.join(from, "dojox/layout/resources/ResizeHandle.css"), path.join(to, "arcgis-js-api/dojox/layout/resources/ResizeHandle.css"));
+  docopy(path.join(from, "esri/css"), path.join(to, "arcgis-js-api/esri/css"));
+  docopy(path.join(from, "esri/dijit/images"), path.join(to, "arcgis-js-api/esri/dijit/images"));
+  docopy(path.join(from, "esri/images"), path.join(to, "arcgis-js-api/esri/images"));
+  docopy(path.join(from, "esri/main.js"), path.join(to, "arcgis-js-api/esri/main.js"));
+  docopy(path.join(from, "esri/layers/vectorTiles"), path.join(to, "arcgis-js-api/esri/layers/vectorTiles"));
+  docopy(path.join(from, "esri/layers/VectorTileLayerImpl.js"), path.join(to, "arcgis-js-api/esri/layers/VectorTileLayerImpl.js"));
   docopy(path.join(from, "jimu"), path.join(to, "jimu.js"));
   docopy(path.join(from, "themes"), path.join(to, "themes"));
   docopy(path.join(from, "widgets"), path.join(to, "widgets"));
@@ -541,6 +556,16 @@ function copyAppBuildPackages(from, to) {
     true
   );
   docopy(path.join(from, "config.json"), path.join(to, "config.json"));
+}
+
+function changeApiUrlOnEnv(from, to){
+  var apiUrl ='/arcgis-js-api';
+  var apiRegEx = /(https:)?\/\/js.arcgis.com\/\d\.\d{1,2}/i;
+  var fileContent = fs.readFileSync(path.join(from, 'env.js'), { encoding: 'utf-8' });
+
+  fileContent = fileContent.replace(apiRegEx, apiUrl);
+
+  fs.writeFileSync(path.join(to, 'env.js'), fileContent, 'utf-8');
 }
 
 function docopy(s, d, check) {

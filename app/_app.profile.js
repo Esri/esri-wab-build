@@ -86,6 +86,25 @@ profile = {
   ],
 
   layers: {
+	"dojo/dojo": {
+	  boot: true,
+      customBase: false,
+      include: [
+		"esri/jsapi",
+		"esri/layers/unitBezier",
+		"esri/SnappingManager",
+		"dojox/gfx/path",
+        "dojox/gfx/svg",
+        "dojox/gfx/filters",
+        "dojox/gfx/svgext",
+        "dojox/gfx/shape",
+		"dojox/xml/parser",
+		"xstyle/core/load-css",
+		"dgrid/TouchScroll",
+		"dgrid/util/touch",
+		"dgrid/util/has-css3"
+	  ]
+    },
     "dynamic-modules/preload": {
       include: []
     },
