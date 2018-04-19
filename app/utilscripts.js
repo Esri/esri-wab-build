@@ -559,7 +559,7 @@ function copyAppBuildPackages(from, to) {
 }
 
 function changeApiUrlOnEnv(from, to){
-  var apiUrl ='/arcgis-js-api';
+  var apiUrl ='./arcgis-js-api';
   var apiRegEx = /(https:)?\/\/js.arcgis.com\/\d\.\d{1,2}/i;
   var fileContent = fs.readFileSync(path.join(from, 'env.js'), { encoding: 'utf-8' });
 
