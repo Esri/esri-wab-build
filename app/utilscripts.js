@@ -531,16 +531,33 @@ function copyFullAppSrc(from, to) {
   );
 }
 
+function copyImageTest(src, dest){
+	//directory
+	if (/^((?!\.[a-zA-Z]{1,4}).)*$/.test(src)) {
+	  console.log(src);
+	  return true;
+	}
+	if (/images/.test(src)) {
+	  console.log(src);
+	  return true;
+	}
+	return false;
+}
+
 function copyAppBuildPackages(from, to) {
   docopy(path.join(from, "dgrid/css"), path.join(to, "arcgis-js-api/dgrid/css"));
+  docopy(path.join(from, "dijit/icons"), path.join(to, "arcgis-js-api/dijit/icons"));
   docopy(path.join(from, "dijit/themes/claro/claro.css"), path.join(to, "arcgis-js-api/dijit/themes/claro/claro.css"));
   docopy(path.join(from, "dojo/resources"), path.join(to, "arcgis-js-api/dojo/resources"));
   docopy(path.join(from, "dojo/dojo.js"), path.join(to, "arcgis-js-api/dojo/dojo.js"));
   docopy(path.join(from, "dojo/nls"), path.join(to, "arcgis-js-api/dojo/nls"));
   docopy(path.join(from, "dojox/gfx/svg.js"), path.join(to, "arcgis-js-api/dojox/gfx/svg.js"));
+  docopy(path.join(from, "dojox/grid/resources"), path.join(to, "arcgis-js-api/dojox/grid/resources"), null, copyImageTest);
+  docopy(path.join(from, "dojox/layout/resources"), path.join(to, "arcgis-js-api/dojox/layout/resources"), null, copyImageTest);
+  docopy(path.join(from, "dojox/layout/resources/ResizeHandle.css"), path.join(to, "arcgis-js-api/dojox/layout/resources/ResizeHandle.css"));
   docopy(path.join(from, "dojox/layout/resources/ResizeHandle.css"), path.join(to, "arcgis-js-api/dojox/layout/resources/ResizeHandle.css"));
   docopy(path.join(from, "esri/css"), path.join(to, "arcgis-js-api/esri/css"));
-  docopy(path.join(from, "esri/dijit/images"), path.join(to, "arcgis-js-api/esri/dijit/images"));
+  docopy(path.join(from, "esri/dijit"), path.join(to, "arcgis-js-api/esri/dijit"), null, copyImageTest);
   docopy(path.join(from, "esri/images"), path.join(to, "arcgis-js-api/esri/images"));
   docopy(path.join(from, "esri/main.js"), path.join(to, "arcgis-js-api/esri/main.js"));
   docopy(path.join(from, "esri/layers/VectorTileLayerImpl.js"), path.join(to, "arcgis-js-api/esri/layers/VectorTileLayerImpl.js"));
@@ -569,7 +586,7 @@ function changeApiUrlOnEnv(from, to){
   fs.writeFileSync(path.join(to, 'env.js'), fileContent, 'utf-8');
 }
 
-function docopy(s, d, check) {
+function docopy(s, d, check, filterFunc) {
   if (check) {
     if (fs.existsSync(s)) {
       console.log("copy", s);
@@ -577,7 +594,7 @@ function docopy(s, d, check) {
     }
   } else {
     console.log("copy", s);
-    fse.copySync(s, d);
+    fse.copySync(s, d, { filter: filterFunc });
   }
 }
 
