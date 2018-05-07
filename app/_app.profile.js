@@ -94,17 +94,18 @@ profile = {
 		"esri/layers/unitBezier",
 		"esri/SnappingManager",
 		"dojox/gfx/path",
-        "dojox/gfx/svg",
-        "dojox/gfx/filters",
-        "dojox/gfx/svgext",
-        "dojox/gfx/shape",
-        "esri/dijit/Attribution",
-        "esri/IdentityManager",
+		"dojox/gfx/svg",
+		"dojox/gfx/filters",
+		"dojox/gfx/svgext",
+		"dojox/gfx/shape",
+		"esri/dijit/Attribution",
+		"esri/IdentityManager",
 		"dojox/xml/parser",
 		"xstyle/core/load-css",
 		"dgrid/TouchScroll",
 		"dgrid/util/touch",
-		"dgrid/util/has-css3"
+		"dgrid/util/has-css3",
+		"dojo/selector/lite"
 	  ]
     },
     "esri/layers/VectorTileLayerImpl": {
