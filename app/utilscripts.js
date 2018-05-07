@@ -537,7 +537,7 @@ function copyImageTest(src, dest){
 	  console.log(src);
 	  return true;
 	}
-	if (/images/.test(src)) {
+	if (/(images|icons)/.test(src)) {
 	  console.log(src);
 	  return true;
 	}
