@@ -128,22 +128,35 @@ exports.build = function(buildPath) {
 
   utilscripts.cleanApp(path.join(appRoot, "buildOutput/app"));
   utilscripts.cleanFilesInAppSource(appRoot);
-  rimraf(path.join(appRoot, "buildOutput/app-packages"), () => {
-    zipFolder(
-      path.join(appRoot, "buildOutput/app"),
-      path.join(appRoot, "buildOutput/app.zip"),
-      function(err) {
-        if (err) {
-          console.log(
+
+  // Return a promise to know when the zipping is done
+  return new Promise((resolve, reject) => {
+    rimraf(path.join(appRoot, "buildOutput/app-packages"), () => {
+      const outputPath = path.join(appRoot, "buildOutput", "app");
+      const outputZipPath = path.join(appRoot, "buildOutput", "app.zip");
+      zipFolder(
+        outputPath,
+        outputZipPath,
+        function(err) {
+          if (err) {
+            console.log(
             "Oh no! There was an error zipping the final build.",
             err
-          );
-        } else {
-          console.log(
+            );
+            // Reject the promise to notify of the error
+            reject(err);
+          } else {
+            console.log(
             "########## BUILD END TIME: " + new Date() + " ##########"
-          );
+            );
+            // Let the caller know useful path information
+            resolve({
+              outputPath: outputPath,
+              outputZipPath: outputZipPath
+            });
+          }
         }
-      }
-    );
+      );
+    });
   });
 };
