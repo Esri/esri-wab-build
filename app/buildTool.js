@@ -9,7 +9,7 @@ exports.build = function(buildPath) {
   const copyScript = require("./copyapp");
   const process = require("process");
   const execSync = require("child_process").execSync;
-  const zipFolder = require("zip-folder");
+  const AdmZip = require("adm-zip");
   const babylon = require("babylon");
 
   const appRoot = buildPath || process.cwd();
@@ -129,21 +129,15 @@ exports.build = function(buildPath) {
   utilscripts.cleanApp(path.join(appRoot, "buildOutput/app"));
   utilscripts.cleanFilesInAppSource(appRoot);
   rimraf(path.join(appRoot, "buildOutput/app-packages"), () => {
-    zipFolder(
-      path.join(appRoot, "buildOutput/app"),
-      path.join(appRoot, "buildOutput/app.zip"),
-      function(err) {
-        if (err) {
-          console.log(
-            "Oh no! There was an error zipping the final build.",
-            err
-          );
-        } else {
-          console.log(
-            "########## BUILD END TIME: " + new Date() + " ##########"
-          );
-        }
-      }
-    );
+    const zip = new AdmZip();
+
+    try {
+      zip.addLocalFolder(path.join(appRoot, "buildOutput/app"));
+      zip.writeZip(path.join(appRoot, "buildOutput/app.zip"));
+
+      console.log("########## BUILD END TIME: " + new Date() + " ##########");
+    } catch (err) {
+      console.log("Oh no! There was an error zipping the final build.", err);
+    }
   });
 };
