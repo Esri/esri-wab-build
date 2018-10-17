@@ -9,7 +9,7 @@ exports.build = function(buildPath) {
   const copyScript = require("./copyapp");
   const process = require("process");
   const execSync = require("child_process").execSync;
-  const zipFolder = require("zip-folder");
+  const AdmZip = require("adm-zip");
   const babylon = require("babylon");
 
   const appRoot = buildPath || process.cwd();
@@ -128,35 +128,16 @@ exports.build = function(buildPath) {
 
   utilscripts.cleanApp(path.join(appRoot, "buildOutput/app"));
   utilscripts.cleanFilesInAppSource(appRoot);
+  rimraf(path.join(appRoot, "buildOutput/app-packages"), () => {
+    const zip = new AdmZip();
 
-  // Return a promise to know when the zipping is done
-  return new Promise((resolve, reject) => {
-    rimraf(path.join(appRoot, "buildOutput/app-packages"), () => {
-      const outputPath = path.join(appRoot, "buildOutput", "app");
-      const outputZipPath = path.join(appRoot, "buildOutput", "app.zip");
-      zipFolder(
-        outputPath,
-        outputZipPath,
-        function(err) {
-          if (err) {
-            console.log(
-            "Oh no! There was an error zipping the final build.",
-            err
-            );
-            // Reject the promise to notify of the error
-            reject(err);
-          } else {
-            console.log(
-            "########## BUILD END TIME: " + new Date() + " ##########"
-            );
-            // Let the caller know useful path information
-            resolve({
-              outputPath: outputPath,
-              outputZipPath: outputZipPath
-            });
-          }
-        }
-      );
-    });
+    try {
+      zip.addLocalFolder(path.join(appRoot, "buildOutput/app"));
+      zip.writeZip(path.join(appRoot, "buildOutput/app.zip"));
+
+      console.log("########## BUILD END TIME: " + new Date() + " ##########");
+    } catch (err) {
+      console.log("Oh no! There was an error zipping the final build.", err);
+    }
   });
 };

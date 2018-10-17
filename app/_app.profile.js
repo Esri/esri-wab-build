@@ -86,6 +86,40 @@ profile = {
   ],
 
   layers: {
+	"dojo/dojo": {
+	  boot: true,
+      customBase: false,
+      include: [
+		"esri/jsapi",
+		"esri/layers/unitBezier",
+		"esri/SnappingManager",
+		"dojox/gfx/path",
+		"dojox/gfx/svg",
+		"dojox/gfx/filters",
+		"dojox/gfx/svgext",
+		"dojox/gfx/shape",
+		"esri/dijit/Attribution",
+		"esri/IdentityManager",
+		"dojox/xml/parser",
+		"xstyle/core/load-css",
+		"dgrid/TouchScroll",
+		"dgrid/util/touch",
+		"dgrid/util/has-css3",
+		"dojo/selector/lite"
+	  ]
+    },
+    "esri/layers/VectorTileLayerImpl": {
+      include: [
+        "esri/layers/VectorTileLayerImpl"
+      ],
+      includeLocales: ["en-us"]
+    },
+    "esri/layers/support/webglDeps": {
+      include: [
+        "esri/layers/support/webglDeps"
+      ],
+      includeLocales: ["en-us"]
+    },
     "dynamic-modules/preload": {
       include: []
     },
@@ -177,6 +211,7 @@ profile = {
   // the settings below are optimized for the smallest AMD loader that is configurable
   // and include dom-ready support
   staticHasFeatures: {
+	"config-deferredInstrumentation": 0,
     "config-dojo-loader-catches": 0,
     "config-tlmSiblingOfDojo": 0,
     "dojo-amd-factory-scan": 0,
@@ -195,15 +230,15 @@ profile = {
     "dojo-moduleUrl": 0,
     "dojo-publish-privates": 0,
     "dojo-requirejs-api": 0,
-    "dojo-sniff": 0,
+    "dojo-sniff": 1,
     "dojo-sync-loader": 0,
     "dojo-test-sniff": 0,
     "dojo-timeout-api": 0,
     "dojo-trace-api": 0,
-    //'dojo-undef-api': 0,
+    "dojo-undef-api": 0,
     "dojo-v1x-i18n-Api": 1, // we still need i18n.getLocalization
     "dojo-xhr-factory": 0,
-    dom: 1,
+    "dom": -1,
     "host-browser": 1,
     "extend-dojo": 1,
     "extend-esri": 0
