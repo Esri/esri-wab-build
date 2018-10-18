@@ -21,5 +21,5 @@ exports.buildApp = function(/*string*/ path) {
   const buildCompletePromise = buildTool.build(tempPath);
 
   // Return the promise
-  return  buildCompletePromise;
+  return buildCompletePromise;
 };

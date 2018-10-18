@@ -149,7 +149,7 @@ exports.build = function(buildPath) {
 
       } catch (err) {
         console.log("Oh no! There was an error zipping the final build.", err);
-        reject(err) ;
+        reject(err);
       }
     });
   });
