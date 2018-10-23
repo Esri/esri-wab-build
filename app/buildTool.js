@@ -129,7 +129,7 @@ exports.build = function(buildPath) {
   utilscripts.cleanApp(path.join(appRoot, "buildOutput/app"));
   utilscripts.cleanFilesInAppSource(appRoot);
 
-  // Return a promise to know when the zipping is done
+  // Return a promise so the caller knows when the build is complete
   return new Promise((resolve, reject) => {
     rimraf(path.join(appRoot, "buildOutput/app-packages"), () => {
       const zip = new AdmZip();
