@@ -20,6 +20,6 @@ exports.buildApp = function(/*string*/ path) {
   // Get a promise from the buildTool
   const buildCompletePromise = buildTool.build(tempPath);
 
-  // Return the promise
+  // Return a promise so the caller knows when the build is complete
   return buildCompletePromise;
 };
