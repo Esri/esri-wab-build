@@ -56,7 +56,10 @@ exports.build = function(buildPath) {
 
   // We always include the arcgis-js-api dependency. If the JS API version is greater than 3.25, we must include dijit-themes:
   // https://github.com/Esri/jsapi-resources/commit/7f26c7bc7a1ee305102cd7b1f95d1631df0edbd5#diff-265400d6fce2c9b60ecb6dbea36d979f
-  let dependencies = [`esri=arcgis-js-api#${apiVersion}`];
+  let dependencies = [
+    `esri=arcgis-js-api#${apiVersion}`,
+    "dgauges=https://github.com/dmandrioli/dgauges.git#383a47f2216be432d866d1add0a95ce40f62da52"
+  ];
   if (apiVersion > 3.25) {
     dependencies.push(
       "dijit-themes=https://github.com/dojo/dijit-themes.git#1.14.0"

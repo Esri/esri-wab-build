@@ -9,18 +9,25 @@ profile = {
   useSourceMaps: false,
   layerOptimize: "closure",
   optimizeOptions: {
-    languageIn: 'ECMASCRIPT6',
-    languageOut: 'ECMASCRIPT5'
+    languageIn: "ECMASCRIPT6",
+    languageOut: "ECMASCRIPT5"
   },
   cssOptimize: "comments",
   copyTests: false,
   internStrings: true,
   mini: true,
 
-  localeList: "ar,cs,da,de,en,el,es,et,fi,fr,he,it,ja,ko,lt,lv,nb,nl,pl,pt-br,pt-pt,ro,ru,sv,th,tr,zh-cn,vi",
+  localeList:
+    "ar,cs,da,de,en,el,es,et,fi,fr,he,it,ja,ko,lt,lv,nb,nl,pl,pt-br,pt-pt,ro,ru,sv,th,tr,zh-cn,vi",
 
   selectorEngine: "acme",
   stripConsole: "none",
+
+  map: {
+    "*": {
+      "dojox/dgauges": "dgauges"
+    }
+  },
 
   packages: [
     {
@@ -34,6 +41,10 @@ profile = {
     {
       name: "dojox",
       location: "./dojox"
+    },
+    {
+      name: "dgauges",
+      location: "./dgauges"
     },
     {
       name: "put-selector",
@@ -86,38 +97,43 @@ profile = {
   ],
 
   layers: {
-	"dojo/dojo": {
-	  boot: true,
+    "dojo/dojo": {
+      boot: true,
       customBase: false,
       include: [
-		"esri/jsapi",
-		"esri/layers/unitBezier",
-		"esri/SnappingManager",
-		"dojox/gfx/path",
-		"dojox/gfx/svg",
-		"dojox/gfx/filters",
-		"dojox/gfx/svgext",
-		"dojox/gfx/shape",
-		"esri/dijit/Attribution",
-		"esri/IdentityManager",
-		"dojox/xml/parser",
-		"xstyle/core/load-css",
-		"dgrid/TouchScroll",
-		"dgrid/util/touch",
-		"dgrid/util/has-css3",
-		"dojo/selector/lite"
-	  ]
+        "esri/jsapi",
+        "esri/layers/unitBezier",
+        "esri/SnappingManager",
+        "dojox/gfx/path",
+        "dojox/gfx/svg",
+        "dojox/gfx/filters",
+        "dojox/gfx/svgext",
+        "dojox/gfx/shape",
+        "esri/dijit/Attribution",
+        "esri/IdentityManager",
+        "dojox/xml/parser",
+        "xstyle/core/load-css",
+        "dgrid/TouchScroll",
+        "dgrid/util/touch",
+        "dgrid/util/has-css3",
+        "dojo/selector/lite"
+      ]
     },
     "esri/layers/VectorTileLayerImpl": {
-      include: [
-        "esri/layers/VectorTileLayerImpl"
-      ],
+      include: ["esri/layers/VectorTileLayerImpl"],
       includeLocales: ["en-us"]
     },
     "esri/layers/support/webglDeps": {
-      include: [
-        "esri/layers/support/webglDeps"
-      ],
+      include: ["esri/layers/support/webglDeps"],
+      includeLocales: ["en-us"]
+    },
+
+    "esri/layers/support/pbfDeps": {
+      include: ["esri/layers/support/pbfDeps"],
+      includeLocales: ["en-us"]
+    },
+    "esri/layers/rasterLib/tile/RasterWorker": {
+      include: ["esri/layers/rasterLib/tile/RasterWorker"],
       includeLocales: ["en-us"]
     },
     "dynamic-modules/preload": {
@@ -145,6 +161,7 @@ profile = {
         "jimu/WidgetManager",
         "jimu/PanelManager",
         "jimu/DataManager",
+        "jimu/DataSourceManager",
         "jimu/LayoutManager",
         "jimu/PoolControllerMixin",
         "jimu/SpatialReference/utils",
@@ -183,7 +200,8 @@ profile = {
         "jimu/dijit/TabContainer3",
         "jimu/dijit/TileLayoutContainer",
         "jimu/dijit/DrawBox",
-        "jimu/dijit/URLInput"
+        "jimu/dijit/URLInput",
+        "jimu/dijit/GridLayout"
       ],
       exclude: ["esri/main", "libs/main"],
       discard: true
@@ -211,7 +229,7 @@ profile = {
   // the settings below are optimized for the smallest AMD loader that is configurable
   // and include dom-ready support
   staticHasFeatures: {
-	"config-deferredInstrumentation": 0,
+    "config-deferredInstrumentation": 0,
     "config-dojo-loader-catches": 0,
     "config-tlmSiblingOfDojo": 0,
     "dojo-amd-factory-scan": 0,
@@ -238,7 +256,7 @@ profile = {
     "dojo-undef-api": 0,
     "dojo-v1x-i18n-Api": 1, // we still need i18n.getLocalization
     "dojo-xhr-factory": 0,
-    "dom": -1,
+    dom: -1,
     "host-browser": 1,
     "extend-dojo": 1,
     "extend-esri": 0
