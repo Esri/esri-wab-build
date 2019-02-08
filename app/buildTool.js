@@ -53,10 +53,19 @@ exports.build = function(buildPath) {
     return false;
   });
   const apiVersion = envJs.tokens[apiVersionIndex + 2].value;
+
+  // We always include the arcgis-js-api dependency. If the JS API version is greater than 3.25, we must include dijit-themes:
+  // https://github.com/Esri/jsapi-resources/commit/7f26c7bc7a1ee305102cd7b1f95d1631df0edbd5#diff-265400d6fce2c9b60ecb6dbea36d979f
+  let dependencies = [`esri=arcgis-js-api#${apiVersion}`];
+  if (apiVersion > 3.25) {
+    dependencies.push(
+      "dijit-themes=https://github.com/dojo/dijit-themes.git#1.14.0"
+    );
+  }
   execSync(
-    "bower install esri=arcgis-js-api#" +
-      apiVersion +
-      " --force-latest  --config.directory=.",
+    `bower install ${dependencies.join(
+      " "
+    )} --force-latest  --config.directory=.`,
     syncArgs
   );
 
@@ -146,7 +155,6 @@ exports.build = function(buildPath) {
           outputPath: outputPath,
           outputZipPath: outputZipPath
         });
-
       } catch (err) {
         console.log("Oh no! There was an error zipping the final build.", err);
         reject(err);
