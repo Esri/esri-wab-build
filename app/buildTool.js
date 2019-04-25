@@ -11,6 +11,7 @@ exports.build = function(buildPath) {
   const execSync = require("child_process").execSync;
   const AdmZip = require("adm-zip");
   const babylon = require("babylon");
+  const pkg = require("../package.json");
 
   const appRoot = buildPath || process.cwd();
 
@@ -146,7 +147,8 @@ exports.build = function(buildPath) {
     rimraf(path.join(appRoot, "buildOutput/app-packages"), () => {
       const zip = new AdmZip();
       const outputPath = path.join(appRoot, "buildOutput", "app");
-      const outputZipPath = path.join(appRoot, "buildOutput", "app.zip");
+      // Name output zip file in the format <name>-<version>.zip from package.json
+      const outputZipPath = path.join(appRoot, "buildOutput", `${pkg.name}-${pkg.version}.zip`);
 
       try {
         zip.addLocalFolder(outputPath);
