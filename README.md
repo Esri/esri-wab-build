@@ -32,13 +32,13 @@ If you see an error around dojo-themes, run: ```bower cache clear``` and try aga
 1. ```npm install```
 2. ```npm run build```
 
-The build output will be located in buildOut\app and compressed in buildOut\<name>-<version>.zip
+The build output will be located in buildOut\app and compressed in buildOut\name-version.zip
 
 ## Install  and run globally:
 1. ```npm install -g esri-wab-build```
 2. ```esri-wab-build <location-of-app>```
 
-The build output will be located in dist\buildOut\app and compressed in dist\buildOut\<name>-<version>.zip
+The build output will be located in dist\buildOut\app and compressed in dist\buildOut\name-version.zip
 
 ## Scripting
 This tool can be used as a library with the following functions:
