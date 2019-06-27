@@ -17,7 +17,7 @@ Based largely around the scripts built by Junshan Liu (@qlqllu) at https://geone
 * Git
 
 ## Warning
-If you see an error around dojo-themes, run: ```bower cache clear``` and try again.
+If you see an error around dojo-themes, run: ```bower cache clean``` and try again.
 
 ## Install and run locally:
 
