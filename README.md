@@ -7,7 +7,7 @@ Verified and designed for 2D Apps built using Web App Builder for Developers 2.1
 
 This task runs a full dojo build on any web app builder application, which will greatly improve performance.
 
-Based largely around the scripts built by Junshan Liu (@qlqllu) at https://geonet.esri.com/docs/DOC-7934
+Based largely around the scripts built by Junshan Liu (@qlqllu) at https://github.com/Esri-DevCenter-Beijing/wab-app-build-script
 
 ## Requirements:
 * Bower (validated with 1.8.0)
