@@ -17,13 +17,13 @@ Based largely around the scripts built by Junshan Liu (@qlqllu) at https://githu
 * Git
 
 ## Warning
-If you see an error around dojo-themes, run: ```bower cache clear``` and try again.
+If you see an error around dojo-themes, run: ```bower cache clean``` and try again.
 
 ## Install and run locally:
 
 ### Setup
 1. Navigate to the application to be built
-2. Create a project.json file (if one does not exist): ```npm init```
+2. Create a package.json file (if one does not exist): ```npm init```
 3. ```npm install --save-dev esri-wab-build```
 4. Add the following to your package.json's scripts object ```"build": "esri-wab-build"``` (Note: an optional parameter can be added to build a remote web app builder app.  For Example:  ```"esri-wab-build C:\arcgis-web-appbuilder-2.7\WebAppBuilderForArcGIS\server\apps\3"```)
 5. Any user that downloads your application will now be able to build:
