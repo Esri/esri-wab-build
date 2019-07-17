@@ -47,7 +47,7 @@ This tool can be used as a library with the following functions:
   * Export and build the Web App Builder Application located at ```buildPath``` into a dist directory
   * Note: ```buildPath``` can be an application located in ```<web-app-builder-home>/server/apps/#```
   * Note: this function returns a promise that will provide the outputPath and outputZipPath when the build process is complete.
-* ```buildTool.buildApp(buildPath)```
+* ```buildTool.build(buildPath)```
   *  Build the Web App Builder Application located at ```buildPath```
   * Note: this function returns a promise that will provide the outputPath and outputZipPath when the build process is complete.
 * ```exportUtils.exportApp(buildPath)```
