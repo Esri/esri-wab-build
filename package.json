@@ -1,10 +1,16 @@
 {
   "author": {
     "name": "George Bochenek",
-    "email": "gbochenek@esri.com"
+    "email": "noreply@esri.com"
   },
+  "contributors": [
+    {
+      "name": "Randy Jones",
+      "email": "randy_jones@esri.com"
+    }
+  ],
   "name": "esri-wab-build",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Build ESRI Web App Builder Applications for performance.",
   "license": "Apache-2.0",
   "main": "app/build",
@@ -29,7 +35,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/gbochenek/esri-wab-build"
+    "url": "https://github.com/Esri/esri-wab-build"
   },
   "dependencies": {
     "adm-zip": "^0.4.11",
